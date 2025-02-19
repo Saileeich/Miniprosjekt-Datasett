@@ -1,0 +1,25 @@
+{
+  "name": "miniprosjekt-datasett",
+  "version": "1.0.0",
+  "description": "I wish to create a tool that gives a bit of intel in the local bus offer. I want to create a map of all the active busses, as well as show how delayed they are. Maybe also develop a system that shows the average delay time of different lines, as well as an AI that predicts how delayed a bus will be based on traffic and other factors. Though these are far more complex than the basic features I will start off with.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saileeich/Miniprosjekt-Datasett.git"
+  },
+  "author": "saileeich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Saileeich/Miniprosjekt-Datasett/issues"
+  },
+  "homepage": "https://github.com/Saileeich/Miniprosjekt-Datasett#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "nodemon": "^2.0.7"
+  }
+}

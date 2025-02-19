@@ -1,2 +1,4 @@
 vehicle_positions.pbf
 vehicle_positions.json
+/__pycache__/
+bus_data.csv

@@ -1,11 +1,24 @@
-# Oppgave om datasett
+# Task About Datasets
 
-## Mål for prosjektet
-Jeg ønsker å lage et verktøy som skal gjøre det lettere å velge hvilken buss man skal ta på Askøy. Den skal vise en gjennomsnittlig
+## Goal of the project
+I wish to create a tool that gives a bit of intel in the local bus offer. I want to create a map of all the active busses, as well as show how delayed they are. Maybe also develop a system that shows the average delay time of different lines, as well as an AI that predicts how delayed a bus will be based on traffic and other factors. Though these are far more complex than the basic features I will start off with.
 
-## Bakgrunn
-Dette prosjektet har to inspirasjonskilder. Den første er Emilies bussprosjekt. Hennes prosjekt om bussforsinkelser har gjort meg nyskjerrig og ønsker en oversikt over mine lokale busser også. Inspirasjon nummer to er en [video av @calledhercalders](https://vm.tiktok.com/ZNd1xV2Tv/) jeg så på TikTok for en stund tilbake. I denne videoen ble det vist fram et kretskort som skulle vise ulike tog sine posisjoner live, noe jeg syntest var litt kult. Jeg tenkte også at noe lignende kunne vært kult for busser også, slik at man kan se hvor bussen man skal ta er, noe som kan være nyttig når man har dårlig tid.
+## Background
+This project takes inspiration primarily from two sources. First of all is Emilie's bus project. Her project about delays in the local bus system and her discovery of an API that has relevant data has made me curios as well.
+Secondly is a [video by @calledhercalders](https://vm.tiktok.com/ZNd1xV2Tv/) I saw on TikTok. It features a nifty circuit board that displays a small map of the trains in Chicago with their position being updated live. This inspired me to do something simular with the local busses. To my knowledge, one does not exist yet, but it would be a really cool and usefull tool to have. I could see myself using it when I'm late for the bus and need to figure out how much time I've got left.
 
 ## API
-[Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview)
-[EnTur Real-Time Data API](https://developer.entur.org/pages-real-time-api)
+Listed are the API's used in the project:
+* [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) <br>
+* [EnTur Real-Time Data API](https://developer.entur.org/pages-real-time-api)
+
+## Requirements
+The libraries required to run this project as well as their installment method are listed here:
+* Requests <br>
+    > pip install requests
+* Pandas
+    > pip install pandas
+* XMLtoDict
+    > pip install xmltodict
+
+    

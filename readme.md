@@ -13,7 +13,8 @@ Listed are the API's used in the project:
 * [EnTur Real-Time Data API](https://developer.entur.org/pages-real-time-api)
 
 ## Requirements
-The libraries required to run this project as well as their installment method are listed here:
+### Python
+The libraries required to run the python and jupyter files in this project, as well as their installment method, are listed here:
 * Requests <br>
     > pip install requests
 * Pandas
@@ -21,4 +22,16 @@ The libraries required to run this project as well as their installment method a
 * XMLtoDict
     > pip install xmltodict
 
+### Javascript
+
+For the web app, you will require Node.js to run. You can download it from their [website](https://nodejs.org/en). When you have installed node, you can run the following command in your terminal to install all the required packages:
+
+> npm install
+
+I also recommend installing nodemon, as it makes running the app better in my opinion. It can be installed with:
+
+> npm install nodemon -g
     
+After this is installed, you can run the web app with:
+
+> nodemon run

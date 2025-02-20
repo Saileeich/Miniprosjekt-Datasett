@@ -40,10 +40,10 @@ def main():
         df.to_json("data.json", orient="records", force_ascii=False, indent=4)
         
         print("Data saved to data.csv and data.json")
-        print(f"Sleeping for {round(15-delta_time, 2) if delta_time < 15 else 2} seconds...")
+        print(f"Sleeping for {round(15-delta_time, 2) if delta_time < 15 else 0} seconds...")
         
         # Sleeping to ensure that I do not exceed the API rate limit
-        time.sleep((15-delta_time) if delta_time < 15 else 2)
+        time.sleep((15-delta_time) if delta_time < 15 else 0)
         
         print("\n")
 

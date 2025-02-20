@@ -35,7 +35,8 @@ async function updateMarkers() {
         const marker = new AdvancedMarkerElement({
             map,
             position: vehiclePosition,
-            title: `${vehicle["LineNum"]} | ${vehicle["StartName"]} - ${vehicle["DestinationName"]} | ${vehicle["StopPointName"]}`,
+            //title: `${vehicle["LineNum"]} | ${vehicle["StartName"]} - ${vehicle["DestinationName"]} | ${vehicle["StopPointName"]}`,
+            title: `${vehicle["LineNum"]} | ${vehicle["Delay"]} | ${vehicle["StopPointName"]}`,
         });
         markers.push(marker);
     }

@@ -2,6 +2,8 @@
 let map;
 let markers = [];
 
+let lineNum = [];
+
 async function initMap() {
     const position = { lat: 60.3244999609888, lng: 5.37445996887982 };
 
@@ -30,13 +32,18 @@ async function updateMarkers() {
         if (vehicle["DestinationName"] == "skyss.no") {
             continue;
         }
+        if (lineNum != "") {
+            if (!lineNum.includes(vehicle["LineNum"])) {
+                continue;
+            }
+        }
         
         const vehiclePosition = { lat: Number(vehicle["Latitude"]), lng: Number(vehicle["Longitude"]) };
         const marker = new AdvancedMarkerElement({
             map,
             position: vehiclePosition,
             //title: `${vehicle["LineNum"]} | ${vehicle["StartName"]} - ${vehicle["DestinationName"]} | ${vehicle["StopPointName"]}`,
-            title: `${vehicle["LineNum"]} | ${vehicle["Delay"]} | ${vehicle["StopPointName"]}`,
+            title: `${vehicle["LineNum"]} | ${vehicle["Delay"]} | ${vehicle["StopPointName"]} | ${vehicle["StartName"]} - ${vehicle["DestinationName"]}`,
         });
         markers.push(marker);
     }
@@ -52,3 +59,12 @@ async function getData() {
 }
 
 initMap();
+
+document.getElementById("customForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    lineNum = document.getElementById("LineNum").value.toUpperCase().split(",");
+    console.log(lineNum);
+    
+    updateMarkers();
+});

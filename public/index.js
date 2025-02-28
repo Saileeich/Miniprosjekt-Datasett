@@ -22,7 +22,7 @@ async function initMap() {
 }
 
 async function updateData() {
-    data = await fetchAndParseXML("https://api.entur.io/realtime/v1/rest/vm?datasetId=SKY&LineRef=SKY:Line:3E");
+    data = await fetchAndParseXML("https://api.entur.io/realtime/v1/rest/vm?datasetId=SKY&LineRef=SKY:Line:400");
     updateMarkers();
 }
 
@@ -120,7 +120,11 @@ async function fetchAndParseXML(url) {
     }
 }
 
+function initData() {
+    return;
+}
 
+initData();
 initMap();
 
 document.getElementById("customForm").addEventListener("submit", async (event) => {

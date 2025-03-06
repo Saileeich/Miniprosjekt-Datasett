@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import xmltodict
 import time
+import uuid
 
 def get_data(url):
     # Fetch data from the API
@@ -14,7 +15,7 @@ def get_data(url):
     return xmltodict.parse(response.text)
 
 def main():
-    url = "https://api.entur.io/realtime/v1/rest/vm?datasetId=SKY"
+    url = f"https://api.entur.io/realtime/v1/rest/vm?datasetId=SKY&requestorId={uuid.uuid4()}"
 
     while True:
         print("Getting data...")
@@ -34,6 +35,9 @@ def main():
         # Renaming columns
         df.columns = ["VehicleRef", "Latitude", "Longitude", "Vehicle", "LineNum", "StartName", "DestinationName", "StopPointName", "Delay"]
         
+        with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+            print(df)
+
         print("Saving data...")
         # Save the dataframe as a csv
         df.to_csv("data.csv", index=False, encoding="utf-8")

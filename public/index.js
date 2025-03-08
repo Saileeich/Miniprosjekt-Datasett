@@ -1,10 +1,15 @@
-// Initialize and add the map
+import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/esm-browser/index.js';
+
 let map;
 let markers = [];
 
 let data;
 
 let lineNum = [];
+let showInRoute = true;
+let showOutRoute = false;
+
+const enTurUUID = uuidv4();
 
 async function initMap() {
     const position = { lat: 60.3244999609888, lng: 5.37445996887982 };
@@ -17,23 +22,57 @@ async function initMap() {
         mapId: "BUS_MAP_ID",
     });
 
-    updateData();
     setInterval(updateData, 15000); // Update markers every 15 seconds
 }
 
+async function init() {
+    // Fetch complete dataset
+    console.log("Fetching data...");
+
+    data = await fetchAndParseXML("https://api.entur.io/realtime/v1/rest/vm?datasetId=SKY&requestorId=" + enTurUUID);
+    console.log("https://api.entur.io/realtime/v1/rest/vm?datasetId=SKY&requestorID=" + enTurUUID);
+    
+
+    console.log("Data fetched:", data);
+
+    document.getElementById("loader").style.display = "none";
+
+    initMap();
+    updateMarkers();
+}
+
 async function updateData() {
-    data = await fetchAndParseXML("https://api.entur.io/realtime/v1/rest/vm?datasetId=SKY&LineRef=SKY:Line:400");
+    console.log("Fetching new data...");
+    
+    const newData = await fetchAndParseXML("https://api.entur.io/realtime/v1/rest/vm?datasetId=SKY&requestorId=" + enTurUUID);
+
+    console.log("New data fetched:", newData);
+
+    // Merge new data into existing data
+    for (const newVehicle of newData) {
+        const existingVehicle = data.find(vehicle => vehicle["VehicleRef"] === newVehicle["VehicleRef"]);
+        if (existingVehicle) {
+            Object.assign(existingVehicle, newVehicle);
+        } else {
+            data.push(newVehicle);
+        }
+    }
+
+    console.log("finished merging");
+    
+
     updateMarkers();
 }
 
 async function updateMarkers() {
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-    
+
     // Clear existing markers
     markers.forEach(marker => marker.setMap(null));
     markers = [];
+    
 
-    for (const vehicle of data) {     
+    for (const vehicle of data) {
         if (vehicle["DestinationName"] == "skyss.no") {
             continue;
         }
@@ -42,9 +81,9 @@ async function updateMarkers() {
                 continue;
             }
         }
-        
+
         const vehiclePosition = { lat: Number(vehicle["Latitude"]), lng: Number(vehicle["Longitude"]) };
-        
+
         const marker = new AdvancedMarkerElement({
             map,
             position: vehiclePosition,
@@ -113,24 +152,19 @@ async function fetchAndParseXML(url) {
                 "Delay": element["MonitoredVehicleJourney"]["Delay"]["#text"],
             });
         }
-        
+
         return result;
     } catch (error) {
         console.error("Error fetching or parsing XML:", error);
     }
 }
 
-function initData() {
-    return;
-}
-
-initData();
-initMap();
+init();
 
 document.getElementById("customForm").addEventListener("submit", async (event) => {
     event.preventDefault();
 
     lineNum = document.getElementById("LineNum").value.toUpperCase().split(",");
-    
+
     updateMarkers();
 });

@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 #map {
     height: 400px;
     width: 100%;
@@ -12,4 +17,28 @@
 
 #customForm {
     margin: 0 5% 0 5%;
+}
+
+#loader {
+    width: 90%;
+    height: 20%;
+    margin: 10% 5% 10% 5%;
+    position: absolute;
+    top: 0;
+    background: 
+        linear-gradient(90deg,#0001 33%,#0005 50%,#0001 66%)
+        #f2f2f2;
+    background-size:300% 100%;
+    animation: l1 1s infinite linear;
+}
+
+#loader > p {
+    width: 100%;
+    height: 100%;
+    padding-top: 5%;
+    text-align: center;
+}
+
+@keyframes l1 {
+    0% {background-position: right}
 }

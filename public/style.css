@@ -6,6 +6,7 @@ body {
 #map {
     height: 400px;
     width: 100%;
+    display: none;
 }
 
 #GUI {
@@ -20,11 +21,8 @@ body {
 }
 
 #loader {
-    width: 90%;
-    height: 20%;
-    margin: 10% 5% 10% 5%;
-    position: absolute;
-    top: 0;
+    height: 400px;
+    width: 100%;
     background: 
         linear-gradient(90deg,#0001 33%,#0005 50%,#0001 66%)
         #f2f2f2;

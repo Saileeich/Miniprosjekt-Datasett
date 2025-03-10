@@ -16,11 +16,16 @@ async function initMap() {
 
     const { Map } = await google.maps.importLibrary("maps");
 
-    map = new Map(document.getElementById("map"), {
+    const mapElement = document.getElementById("map");
+
+    map = new Map(mapElement, {
         zoom: 10,
         center: position,
         mapId: "BUS_MAP_ID",
     });
+
+    mapElement.style.display = "block";
+    document.getElementById("loader").style.display = "none";
 
     setInterval(updateData, 15000); // Update markers every 15 seconds
 }
@@ -34,8 +39,6 @@ async function init() {
     
 
     console.log("Data fetched:", data);
-
-    document.getElementById("loader").style.display = "none";
 
     initMap();
     updateMarkers();

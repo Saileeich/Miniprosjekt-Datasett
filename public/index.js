@@ -76,9 +76,22 @@ async function updateMarkers() {
     
 
     for (const vehicle of data) {
-        if (vehicle["DestinationName"] == "skyss.no") {
+        /*
+        if (vehicle["DestinationName"] === "skyss.no" && !showOutRoute) {
+            continue;
+        } else if (!showInRoute) {
             continue;
         }
+        */
+
+        if (vehicle["DestinationName"] === "skyss.no" && !showOutRoute) {
+            continue;
+        }
+        if (vehicle["DestinationName"] !== "skyss.no" && !showInRoute) {
+            continue;
+        }
+
+
         if (lineNum != "") {
             if (!lineNum.includes(vehicle["LineNum"])) {
                 continue;
@@ -168,6 +181,9 @@ document.getElementById("customForm").addEventListener("submit", async (event) =
     event.preventDefault();
 
     lineNum = document.getElementById("LineNum").value.toUpperCase().split(",");
+
+    showInRoute = document.getElementById("showInRoute").checked;
+    showOutRoute = document.getElementById("showOutRoute").checked;
 
     updateMarkers();
 });
